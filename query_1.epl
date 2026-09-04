@@ -1,0 +1,7 @@
+select
+    averageTemperature,
+    timestamp.format('yyyy-MM-dd') as date,
+    minimumTemperature,
+    maximumTemperature
+from jfk
+where averageTemperature > 85
