@@ -2,6 +2,5 @@ select
     first((timestamp).format('yyyy-MM-dd')) as Start_date,
     last((timestamp).format('yyyy-MM-dd')) as End_date,
     avg(averageTemperature) as Temp
-from jfk#win:length(7)
-having count(*) = 7
-   and avg(averageTemperature) > 82
+from jfk#win:length_batch(7)
+having avg(averageTemperature) > 82

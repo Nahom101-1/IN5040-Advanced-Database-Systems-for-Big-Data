@@ -1,0 +1,6 @@
+select
+    first((timestamp).format('yyyy-MM-dd')) as Week_start,
+    last((timestamp).format('yyyy-MM-dd')) as Week_end,
+    sum(precipitation) as precipitation
+from san_francisco#win:ext_timed_batch(timestamp, 7 days)
+having sum(precipitation) >= 3

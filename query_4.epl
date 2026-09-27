@@ -1,0 +1,9 @@
+select
+    first((timestamp).format('yyyy-MM-dd')) as Start_date,
+    last((timestamp).format('yyyy-MM-dd')) as End_date,
+    avg(averageWindSpeed) as Wind,
+    sum(precipitation) as Precipitation
+from san_francisco#win:length(3)
+having count(*) = 3
+    and avg(averageWindSpeed) > 19
+    and sum(precipitation) > 0

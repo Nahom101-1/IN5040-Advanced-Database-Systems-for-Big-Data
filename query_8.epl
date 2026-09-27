@@ -1,1 +1,11 @@
-
+select
+    min(j.timestamp).format('yyyy-MM-dd') as Week_start,
+    max(j.timestamp).format('yyyy-MM-dd') as Week_end,
+    avg(s.averageTemperature) - avg(j.averageTemperature) as Temperature_difference
+from jfk#win:length_batch(7) as j,
+     san_francisco#win:length_batch(7) as s
+where j.timestamp = s.timestamp
+having count(*) = 7
+   and avg(s.averageTemperature) - avg(j.averageTemperature) > 35
+   and max(j.precipitation) > 0
+   and max(s.precipitation) = 0

@@ -8,6 +8,8 @@ run1:
 	java -classpath $(cp) Assignment1 query_1.epl
 run2:
 	java -classpath $(cp) Assignment1 query_2.epl
+run2_tumbling:
+	java -classpath $(cp) Assignment1 query_2_tumbling.epl
 run3:
 	java -classpath $(cp) Assignment1 query_3.epl
 run4:

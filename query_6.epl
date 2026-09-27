@@ -1,0 +1,13 @@
+select
+    a.timestamp.format('yyyy-MM-dd') as First_date,
+    b.timestamp.format('yyyy-MM-dd') as Second_date,
+    a.averageTemperature as Temp1,
+    b.averageTemperature as Temp2,
+    Math.abs(a.averageTemperature - b.averageTemperature) as Temp_difference
+from pattern [
+    every a=jfk ->
+    b=jfk(
+        timestamp - a.timestamp <= 7 * 24 * 60 * 60 * 1000
+        and Math.abs(averageTemperature - a.averageTemperature) >= 40
+    )
+]

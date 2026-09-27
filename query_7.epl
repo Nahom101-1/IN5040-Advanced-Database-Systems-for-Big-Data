@@ -1,1 +1,11 @@
-
+select
+    a.timestamp.format('yyyy-MM-dd') as Start_date,
+    c.timestamp.format('yyyy-MM-dd') as Stop_date,
+    a.averageWindSpeed as Wind_1,
+    b.averageWindSpeed as Wind_2,
+    c.averageWindSpeed as Wind_3
+from pattern [every a=jfk -> b=jfk -> c=jfk]
+where b.averageWindSpeed - a.averageWindSpeed >= 5
+  and b.precipitation > a.precipitation
+  and c.averageWindSpeed - b.averageWindSpeed >= 5
+  and c.precipitation > b.precipitation
